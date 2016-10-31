@@ -9,7 +9,7 @@ module FriendlyGhost
     attr_reader :process, :result
 
     def initialize
-      @casper_path = 'which casperjs'.gsub(/^\t\r\n/, ''.freeze)
+      @casper_path = 'which casperjs'
     end
 
     def command(args)
@@ -27,7 +27,7 @@ module FriendlyGhost
 
     def parse_result
       json_line = @process.out.split(/\n/).select { |line| line =~ /\{/ }
-      output = json_line.first.gsub(/^\t\r\n/, ''.freeze)
+      output = json_line.first
       MultiJson.load(output)
     end
   end
